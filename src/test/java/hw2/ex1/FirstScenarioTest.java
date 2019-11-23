@@ -1,37 +1,17 @@
 package hw2.ex1;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import hw2.utils.AbstractSeleniumTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterTest;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class FirstScenarioTest {
-
-    private WebDriver driver;
-
-    @BeforeTest
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        this.driver = new ChromeDriver();
-        driver.manage().timeouts().
-                implicitlyWait(10000, TimeUnit.MILLISECONDS);
-        driver.manage().timeouts().
-                pageLoadTimeout(20000, TimeUnit.MILLISECONDS);
-        driver.manage().timeouts().
-                setScriptTimeout(30000, TimeUnit.MILLISECONDS);
-    }
+public class FirstScenarioTest extends AbstractSeleniumTest {
 
     @Test
     public void firstScenarioTest() {
@@ -76,33 +56,31 @@ public class FirstScenarioTest {
         // There's a creating of array list with expected texts
         // in header, getting a web element with actual header
         // texts, getting list of these texts and comparing them
-        ArrayList<String> expectedHeaderTexts = new ArrayList<>();
-        expectedHeaderTexts.add("HOME");
-        expectedHeaderTexts.add("CONTACT FORM");
-        expectedHeaderTexts.add("SERVICE");
-        expectedHeaderTexts.add("METALS & COLORS");
+        List<String> expectedHeaderTexts = Arrays.
+                asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
         WebElement header = driver.findElement(By.
                 xpath("//ul[@class='uui-navigation nav navbar-nav m-l8']"));
-        List<String> actualHeaderTexts = Arrays.
-                asList(header.getText().split("\n"));
+        List<WebElement> headerItems = header.findElements(By.tagName("li"));
+        ArrayList<String> actualHeaderTexts = new ArrayList<>();
+        for (WebElement headerItem : headerItems) {
+            if (headerItem.getText().equals("")) {
+                continue;
+            }
+            actualHeaderTexts.add(headerItem.getText());
+        }
         assertEquals(actualHeaderTexts, expectedHeaderTexts);
 
         // 7. Assert that there are 4 images on the Index Page and
         // they are displayed
         // There's a simple assertion of existing
         // and displaying of 4 icons
-        assertTrue(driver.findElement(By.
-                xpath("//span[@class='icons-benefit icon-practise']")).
-                isDisplayed());
-        assertTrue(driver.findElement(By.
-                xpath("//span[@class='icons-benefit icon-custom']")).
-                isDisplayed());
-        assertTrue(driver.findElement(By.
-                xpath("//span[@class='icons-benefit icon-multi']")).
-                isDisplayed());
-        assertTrue(driver.findElement(By.
-                xpath("//span[@class='icons-benefit icon-base']")).
-                isDisplayed());
+        WebElement benefits = driver.findElement(By.
+                xpath("//div[@class='row clerafix benefits']"));
+        List<WebElement> benefitsSpans = benefits.findElements(By.
+                className("icons-benefit"));
+        for (WebElement benefitsSpan : benefitsSpans) {
+            assertTrue(benefitsSpan.isDisplayed());
+        }
 
         // 8. Assert that there are 4 texts on the Index Page
         // under icons and they have proper text
@@ -110,17 +88,17 @@ public class FirstScenarioTest {
         // filling it with values. Then we get the list of elements
         // with actual benefits texts, get texts from them
         // and compare actual texts and expected ones
-        ArrayList<String> expectedBenefitsTexts = new ArrayList<>();
-        expectedBenefitsTexts.add("To include good practices\n" +
-                "and ideas from successful\n" +
-                "EPAM project");
-        expectedBenefitsTexts.add("To be flexible and\n" +
-                "customizable");
-        expectedBenefitsTexts.add("To be multiplatform");
-        expectedBenefitsTexts.add("Already have good base\n" +
-                "(about 20 internal and\n" +
-                "some external projects),\n" +
-                "wish to get more…");
+        List<String> expectedBenefitsTexts = Arrays.asList(
+                "To include good practices\n" +
+                        "and ideas from successful\n" +
+                        "EPAM project",
+                "To be flexible and\n" +
+                        "customizable",
+                "To be multiplatform",
+                "Already have good base\n" +
+                        "(about 20 internal and\n" +
+                        "some external projects),\n" +
+                        "wish to get more…");
         List<WebElement> actualBenefitsTextsElements = driver.findElements(By.
                 className("benefit-txt"));
         ArrayList<String> actualBenefitsTexts = new ArrayList<>();
@@ -191,13 +169,6 @@ public class FirstScenarioTest {
         // 16. Assert that there is Footer
         // We check here if the footer is displayed
         assertTrue(driver.findElement(By.tagName("footer")).isDisplayed());
-    }
-
-    @AfterTest
-    public void tearDown() {
-        // 17. Close Browser
-        // There we have a simple closing
-        driver.close();
     }
 
 }

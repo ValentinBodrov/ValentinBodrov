@@ -1,43 +1,28 @@
 package hw2.ex2;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import hw2.utils.AbstractSeleniumTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.assertFalse;
 
-public class SecondScenarioTest {
+public class SecondScenarioTest extends AbstractSeleniumTest {
 
-    private WebDriver driver;
     private SoftAssert sa;
-
-    @BeforeTest
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        this.driver = new ChromeDriver();
-        this.sa = new SoftAssert();
-        driver.manage().timeouts().
-                implicitlyWait(10000, TimeUnit.MILLISECONDS);
-        driver.manage().timeouts().
-                pageLoadTimeout(20000, TimeUnit.MILLISECONDS);
-        driver.manage().timeouts().
-                setScriptTimeout(30000, TimeUnit.MILLISECONDS);
-    }
 
     @Test
     public void secondScenarioTest() {
+        // 0. We should declare this soft assert
+        this.sa = new SoftAssert();
+
         // 1. Open test site by URL
         // There's a simple opening of a site
         driver.get("https://epam.github.io/JDI/index.html");
@@ -78,18 +63,16 @@ public class SecondScenarioTest {
         driver.findElement(By.xpath("//li[@class='dropdown']")).click();
         WebElement headerDropDownList = driver.findElement(By.
                 xpath("//ul[@class='dropdown-menu']"));
-        List<String> actualServiceHeaderTexts = Arrays.
-                asList(headerDropDownList.getText().split("\n"));
-        ArrayList<String> expectedServiceHeaderTexts = new ArrayList<>();
-        expectedServiceHeaderTexts.add("SUPPORT");
-        expectedServiceHeaderTexts.add("DATES");
-        expectedServiceHeaderTexts.add("SEARCH");
-        expectedServiceHeaderTexts.add("COMPLEX TABLE");
-        expectedServiceHeaderTexts.add("SIMPLE TABLE");
-        expectedServiceHeaderTexts.add("USER TABLE");
-        expectedServiceHeaderTexts.add("TABLE WITH PAGES");
-        expectedServiceHeaderTexts.add("DIFFERENT ELEMENTS");
-        expectedServiceHeaderTexts.add("PERFORMANCE");
+        List<WebElement> headerItems = headerDropDownList.
+                findElements(By.tagName("li"));
+        ArrayList<String> actualServiceHeaderTexts = new ArrayList<>();
+        for (WebElement headerItem : headerItems) {
+            actualServiceHeaderTexts.add(headerItem.getText());
+        }
+        List<String> expectedServiceHeaderTexts = Arrays.
+                asList("SUPPORT", "DATES", "SEARCH", "COMPLEX TABLE",
+                        "SIMPLE TABLE", "USER TABLE", "TABLE WITH PAGES",
+                        "DIFFERENT ELEMENTS", "PERFORMANCE");
         assertEquals(actualServiceHeaderTexts, expectedServiceHeaderTexts);
 
         // 6. Click on Service subcategory in
@@ -103,18 +86,16 @@ public class SecondScenarioTest {
         driver.findElement(By.className("menu-title")).click();
         WebElement leftSectionDropDownList = driver.findElement(By.
                 xpath("//ul[@class='sub']"));
-        List<String> actualServiceLeftSectionTexts = Arrays.
-                asList(leftSectionDropDownList.getText().split("\n"));
-        ArrayList<String> expectedServiceLeftSectionTexts = new ArrayList<>();
-        expectedServiceLeftSectionTexts.add("Support");
-        expectedServiceLeftSectionTexts.add("Dates");
-        expectedServiceLeftSectionTexts.add("Complex Table");
-        expectedServiceLeftSectionTexts.add("Simple Table");
-        expectedServiceLeftSectionTexts.add("Search");
-        expectedServiceLeftSectionTexts.add("User Table");
-        expectedServiceLeftSectionTexts.add("Table with pages");
-        expectedServiceLeftSectionTexts.add("Different elements");
-        expectedServiceLeftSectionTexts.add("Performance");
+        List<WebElement> leftSectionItems = leftSectionDropDownList.
+                findElements(By.tagName("li"));
+        ArrayList<String> actualServiceLeftSectionTexts = new ArrayList<>();
+        for (WebElement headerItem : leftSectionItems) {
+            actualServiceLeftSectionTexts.add(headerItem.getText());
+        }
+        List<String> expectedServiceLeftSectionTexts = Arrays.
+                asList("Support", "Dates", "Complex Table", "Simple Table",
+                        "Search", "User Table", "Table with pages",
+                        "Different elements", "Performance");
         sa.assertEquals(actualServiceLeftSectionTexts,
                 expectedServiceLeftSectionTexts);
 
@@ -165,17 +146,15 @@ public class SecondScenarioTest {
         // 11. Select checkboxes
         // There we should click on checkboxes with labels
         // "Water" and "Wind" and check if they are checked
-        driver.findElement(By.
-                xpath("//div[@class='main-content']//div[2]//label[1]")).
-                click();
-        WebElement waterCheckBox = driver.findElement(By.
-                xpath("//div//div//div//div[2]//label[1]//input[1]"));
+        List<WebElement> checkboxLabels = driver.findElements(By.
+                className("label-checkbox"));
+        List<WebElement> checkboxes = driver.findElements(By.
+                cssSelector("input[type=checkbox]"));
+        checkboxLabels.get(0).click();
+        WebElement waterCheckBox = checkboxes.get(0);
         assertTrue(waterCheckBox.isSelected());
-        driver.findElement(By.
-                xpath("//div[@class='main-content']//div[2]//label[3]")).
-                click();
-        WebElement windCheckBox = driver.findElement(By.
-                xpath("//div//div//div//div[2]//label[3]//input[1]"));
+        checkboxLabels.get(2).click();
+        WebElement windCheckBox = checkboxes.get(2);
         assertTrue(windCheckBox.isSelected());
 
         // 12. Assert that for each checkbox there is
@@ -191,9 +170,9 @@ public class SecondScenarioTest {
         // display (we'll not use it in the further steps)
         WebElement actualLogRowsWebElement = driver.findElement(By.
                 className("info-panel-section"));
-        List<String> actualLogRowsValues = Arrays.
-                asList(actualLogRowsWebElement.getText().split("\n"));
-        sa.assertEquals(actualLogRowsValues.size(), 2);
+        List<WebElement> actualLogRowsItems = actualLogRowsWebElement.
+                findElements(By.tagName("li"));
+        sa.assertEquals(actualLogRowsItems.size(), 2);
         sa.assertTrue(actualLogRowsWebElement.getText().
                 contains("Wind") && actualLogRowsWebElement.getText().
                 contains("true"));
@@ -204,9 +183,12 @@ public class SecondScenarioTest {
         // 13. Select radio
         // There we should click on radio with label
         // "Selen" and check if it is checked
-        driver.findElement(By.xpath("//div[3]//label[4]")).click();
-        WebElement selenRadioButton = driver.findElement(By.
-                xpath("//div[3]//label[4]//input[1]"));
+        List<WebElement> radioLabels = driver.findElements(By.
+                className("label-radio"));
+        List<WebElement> radios = driver.findElements(By.
+                cssSelector("input[type=radio]"));
+        radioLabels.get(3).click();
+        WebElement selenRadioButton = radios.get(3);
         assertTrue(selenRadioButton.isSelected());
 
         // 14. Assert that for radiobutton there is
@@ -243,12 +225,8 @@ public class SecondScenarioTest {
         // 17. Unselect and assert checkboxes
         // There we should click on checkboxes with labels
         // "Water" and "Wind" again and check if they are unchecked
-        driver.findElement(By.
-                xpath("//div[@class='main-content']//div[2]//label[1]")).
-                click();
-        driver.findElement(By.
-                xpath("//div[@class='main-content']//div[2]//label[3]")).
-                click();
+        checkboxLabels.get(0).click();
+        checkboxLabels.get(2).click();
         assertFalse(waterCheckBox.isSelected());
         assertFalse(windCheckBox.isSelected());
 
@@ -266,13 +244,6 @@ public class SecondScenarioTest {
         sa.assertTrue(actualLogRowsWebElement.getText().
                 contains("Wind") && actualLogRowsWebElement.getText().
                 contains("false"));
-    }
-
-    @AfterTest
-    public void tearDown() {
-        // X. Close Browser
-        // We should do it
-        driver.close();
     }
 
 }
