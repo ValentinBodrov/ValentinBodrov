@@ -15,6 +15,9 @@
 
         <!-- Libraries version -->
         <testng.version>7.0.0</testng.version>
+        <selenium.version>3.141.59</selenium.version>
+        <commons.io.version>2.6</commons.io.version>
+        <webdrivermanager.version>3.7.1</webdrivermanager.version>
 
         <!-- Plugins version -->
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
@@ -23,6 +26,39 @@
     </properties>
 
     <profiles>
+        <profile>
+            <id>AllScenarios</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/hw2/commonScenarioTestSuite.xml
+                </suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>FirstScenario</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/hw2/firstScenarioTestSuite.xml
+                </suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>SecondScenario</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/hw2/secondScenarioTestSuite.xml
+                </suite.file>
+            </properties>
+        </profile>
+
         <profile>
             <id>All</id>
             <activation>
@@ -52,7 +88,7 @@
                 <suite.file>src/test/resources/multDivTestSuite.xml</suite.file>
             </properties>
         </profile>
-
+      
     </profiles>
 
     <dependencies>
@@ -62,7 +98,22 @@
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.calculator</groupId>
             <artifactId>calculator</artifactId>

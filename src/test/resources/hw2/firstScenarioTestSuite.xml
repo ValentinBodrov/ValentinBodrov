@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test The First Scenario">
+
+    <test name="First Scenario Test">
+        <classes>
+            <class name="hw2.ex1.FirstScenarioTest">
+                <methods>
+                    <include name="firstScenarioTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
