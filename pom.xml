@@ -32,7 +32,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <suite.file>src/test/resources/commonScenarioTestSuite.xml
+                <suite.file>src/test/resources/hw2/commonScenarioTestSuite.xml
                 </suite.file>
             </properties>
         </profile>
@@ -43,7 +43,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <suite.file>src/test/resources/firstScenarioTestSuite.xml
+                <suite.file>src/test/resources/hw2/firstScenarioTestSuite.xml
                 </suite.file>
             </properties>
         </profile>
@@ -54,7 +54,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <suite.file>src/test/resources/secondScenarioTestSuite.xml
+                <suite.file>src/test/resources/hw2/secondScenarioTestSuite.xml
                 </suite.file>
             </properties>
         </profile>
