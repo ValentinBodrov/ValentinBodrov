@@ -59,6 +59,36 @@
             </properties>
         </profile>
 
+        <profile>
+            <id>All</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/commonTestSuite.xml</suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>SumAndSub</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/addSubTestSuite.xml</suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>MultAndDiv</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/multDivTestSuite.xml</suite.file>
+            </properties>
+        </profile>
+      
     </profiles>
 
     <dependencies>
@@ -84,7 +114,13 @@
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.calculator</groupId>
+            <artifactId>calculator</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/calculator-1.0.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
