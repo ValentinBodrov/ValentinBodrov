@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utils.AbstractBasePage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,16 +27,16 @@ public class HomePage extends AbstractBasePage {
     @FindBy(id = "user-name")
     private WebElement usernameLabel;
 
-    @FindBy(xpath = "//ul[@class='uui-navigation nav navbar-nav m-l8']")
+    @FindBy(className = "navbar-nav")
     private WebElement header;
 
-    @FindBy(xpath = "//div[@class='row clerafix benefits']")
+    @FindBy(className = "benefits")
     private WebElement benefits;
 
-    @FindBy(xpath = "//h3[@name='main-title']")
+    @FindBy(name = "main-title")
     private WebElement mainHeader;
 
-    @FindBy(xpath = "//p[@name='jdi-text']")
+    @FindBy(name = "jdi-text")
     private WebElement mainText;
 
     @FindBy(xpath = "//h3[@class='text-center']")
@@ -52,11 +51,8 @@ public class HomePage extends AbstractBasePage {
     @FindBy(linkText = "JDI GITHUB")
     private WebElement linkElement;
 
-    @FindBy(xpath = "//div[@name='navigation-sidebar']")
+    @FindBy(name = "navigation-sidebar")
     private WebElement leftSection;
-
-    @FindBy(tagName = "footer")
-    private WebElement footer;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -98,7 +94,7 @@ public class HomePage extends AbstractBasePage {
         List<WebElement> headerItems = header.findElements(By.tagName("li"));
         ArrayList<String> actualHeaderTexts = new ArrayList<>();
         for (WebElement headerItem : headerItems) {
-            if (headerItem.getText().equals("")) {
+            if ("".equals(headerItem.getText())) {
                 continue;
             }
             actualHeaderTexts.add(headerItem.getText());
@@ -146,10 +142,6 @@ public class HomePage extends AbstractBasePage {
 
     public WebElement getLeftSection() {
         return this.leftSection;
-    }
-
-    public WebElement getFooter() {
-        return this.footer;
     }
 
 }
