@@ -27,6 +27,39 @@
 
     <profiles>
         <profile>
+            <id>AllStepScenarios</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/hw3/commonScenarioTestSuite.xml
+                </suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>FirstStepScenario</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/hw3/firstScenarioTestSuite.xml
+                </suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>SecondStepScenario</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/hw3/secondScenarioTestSuite.xml
+                </suite.file>
+            </properties>
+        </profile>
+
+        <profile>
             <id>AllScenarios</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
@@ -40,7 +73,7 @@
         <profile>
             <id>FirstScenario</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.file>src/test/resources/hw2/firstScenarioTestSuite.xml
@@ -65,17 +98,19 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <suite.file>src/test/resources/commonTestSuite.xml</suite.file>
+                <suite.file>src/test/resources/hw1/commonTestSuite.xml
+                </suite.file>
             </properties>
         </profile>
 
         <profile>
             <id>SumAndSub</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <suite.file>src/test/resources/addSubTestSuite.xml</suite.file>
+                <suite.file>src/test/resources/hw1/addSubTestSuite.xml
+                </suite.file>
             </properties>
         </profile>
 
@@ -85,7 +120,8 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <suite.file>src/test/resources/multDivTestSuite.xml</suite.file>
+                <suite.file>src/test/resources/hw1/multDivTestSuite.xml
+                </suite.file>
             </properties>
         </profile>
       
