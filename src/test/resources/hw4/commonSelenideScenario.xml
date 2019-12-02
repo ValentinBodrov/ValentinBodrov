@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test All Selenide Scenarios">
+
+    <test name="First Selenide Scenario Test">
+        <classes>
+            <class name="hw4.ex1.SelenideTest">
+                <methods>
+                    <include name="firstExerciseTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Second Selenide Scenario Test">
+        <classes>
+            <class name="hw4.ex2.SelenideTest">
+                <methods>
+                    <include name="secondExerciseTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

@@ -23,9 +23,44 @@
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
 
+        <selenide.version>5.5.1</selenide.version>
     </properties>
 
     <profiles>
+
+        <profile>
+            <id>AllSelenideScenarios</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/hw4/commonSelenideScenario.xml
+                </suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>FirstSelenideScenario</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/hw4/firstSelenideScenario.xml
+                </suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>SecondSelenideScenario</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/hw4/secondSelenideScenario.xml
+                </suite.file>
+            </properties>
+        </profile>
+
         <profile>
             <id>AllStepScenarios</id>
             <activation>
@@ -156,6 +191,11 @@
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/src/main/resources/calculator-1.0.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>${selenide.version}</version>
         </dependency>
     </dependencies>
 
