@@ -4,9 +4,13 @@ import hw5.ex1.steps.ActionSteps;
 import hw5.ex1.steps.AssertionSteps;
 import hw5.ex1.steps.ModelSteps;
 import hw5.utils.AbstractSeleniumTest;
+import hw5.utils.AttachmentListener;
+import io.qameta.allure.testng.AllureTestNg;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners({AllureTestNg.class, AttachmentListener.class})
 public class FirstScenarioTest extends AbstractSeleniumTest {
 
     private ModelSteps modelSteps;
@@ -92,6 +96,25 @@ public class FirstScenarioTest extends AbstractSeleniumTest {
         // 16. Assert that there is Footer
         // We check here if the footer is displayed
         assertionSteps.assertThatTheFooterIsDisplayed();
+    }
+
+    @Test(testName = "Failed Login Test")
+    public void failedLoginTest() {
+        // 1. Open test site by URL
+        actionSteps.openEpamJdiSite();
+
+        // 2. Assert Browser title
+        assertionSteps.pageTitleShouldBe("Home Page");
+
+        // 3. Perform login
+        actionSteps.login(userProperties.getProperty("username"),
+                userProperties.getProperty("password"));
+
+        // 4. Assert User name in the left top side
+        // of screen that user is logined
+        // NB! There's a failure
+        assertionSteps.
+                usernameOnThePageShouldBe("PITER CHAILOVSKII1");
     }
 
 }

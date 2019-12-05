@@ -35,6 +35,7 @@ public abstract class AbstractSeleniumTest {
             e.printStackTrace();
             driver.close();
         }
+        WebDriverSingleton.INSTANCE.setDriver(driver);
     }
 
     @AfterMethod

@@ -3,11 +3,7 @@
 
     <test name="First Scenario Test">
         <classes>
-            <class name="hw5.ex1.FirstScenarioTest">
-                <methods>
-                    <include name="loginTest"/>
-                </methods>
-            </class>
+            <class name="hw5.ex1.FirstScenarioTest"/>
         </classes>
     </test>
 
