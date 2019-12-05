@@ -1,8 +1,8 @@
-package hw5.ex1;
+package hw5;
 
-import hw5.ex1.steps.ActionSteps;
-import hw5.ex1.steps.AssertionSteps;
-import hw5.ex1.steps.ModelSteps;
+import hw5.steps.ActionSteps;
+import hw5.steps.AssertionSteps;
+import hw5.steps.ModelSteps;
 import hw5.utils.AbstractSeleniumTest;
 import hw5.utils.AttachmentListener;
 import io.qameta.allure.testng.AllureTestNg;
@@ -98,23 +98,23 @@ public class FirstScenarioTest extends AbstractSeleniumTest {
 //        assertionSteps.assertThatTheFooterIsDisplayed();
     }
 
-//    @Test(testName = "Failed Login Test")
-//    public void failedLoginTest() {
-//        // 1. Open test site by URL
-//        actionSteps.openEpamJdiSite();
-//
-//        // 2. Assert Browser title
-//        assertionSteps.pageTitleShouldBe("Home Page");
-//
-//        // 3. Perform login
-//        actionSteps.login(userProperties.getProperty("username"),
-//                userProperties.getProperty("password"));
-//
-//        // 4. Assert User name in the left top side
-//        // of screen that user is logined
-//        // NB! There's a failure
-//        assertionSteps.
-//                usernameOnThePageShouldBe("PITER CHAILOVSKII1");
-//    }
+    @Test(testName = "Failed Login Test")
+    public void failedLoginTest() {
+        // 1. Open test site by URL
+        actionSteps.openEpamJdiSite();
+
+        // 2. Assert Browser title
+        assertionSteps.pageTitleShouldBe("Home Page");
+
+        // 3. Perform login
+        actionSteps.login(userProperties.getProperty("username"),
+                userProperties.getProperty("password"));
+
+        // 4. Assert User name in the left top side
+        // of screen that user is logined
+        // NB! There's a failure
+        assertionSteps.
+                usernameOnThePageShouldBe("PITER CHAILOVSKII1");
+    }
 
 }

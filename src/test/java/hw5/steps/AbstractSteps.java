@@ -1,6 +1,6 @@
-package hw5.ex1.steps;
+package hw5.steps;
 
-import hw5.ex1.HomePage;
+import hw5.HomePage;
 import org.openqa.selenium.WebDriver;
 
 public abstract class AbstractSteps {

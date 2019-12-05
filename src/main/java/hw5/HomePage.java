@@ -1,4 +1,4 @@
-package hw5.ex1;
+package hw5;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

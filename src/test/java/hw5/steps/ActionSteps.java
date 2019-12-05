@@ -1,4 +1,4 @@
-package hw5.ex1.steps;
+package hw5.steps;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;

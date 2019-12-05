@@ -3,7 +3,7 @@
 
     <test name="First Scenario Test">
         <classes>
-            <class name="hw5.ex1.FirstScenarioTest"/>
+            <class name="hw5.FirstScenarioTest"/>
         </classes>
     </test>
 

@@ -1,4 +1,4 @@
-package hw5.ex1.steps;
+package hw5.steps;
 
 import hw5.utils.HeaderItems;
 import org.openqa.selenium.WebDriver;
