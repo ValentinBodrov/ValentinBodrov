@@ -1,4 +1,6 @@
-target
+/target
 *.iml
 .idea
 /build
+**/.allure
+**/allure-results
