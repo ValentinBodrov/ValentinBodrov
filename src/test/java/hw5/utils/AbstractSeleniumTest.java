@@ -27,6 +27,7 @@ public abstract class AbstractSeleniumTest {
         driver.manage().timeouts().
                 setScriptTimeout(30000, TimeUnit.MILLISECONDS);
         driver.manage().window().maximize();
+        WebDriverSingleton.INSTANCE.setDriver(driver);
         userProperties = new Properties();
         try {
             userProperties.load(new FileInputStream(
@@ -35,7 +36,6 @@ public abstract class AbstractSeleniumTest {
             e.printStackTrace();
             driver.close();
         }
-        WebDriverSingleton.INSTANCE.setDriver(driver);
     }
 
     @AfterMethod

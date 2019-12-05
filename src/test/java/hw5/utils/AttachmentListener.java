@@ -8,12 +8,13 @@ import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
 public class AttachmentListener extends TestListenerAdapter {
+
     @Attachment(value = "Attachment.png", type = "image/png")
     public byte[] makeScreenshot() {
         byte[] array = {1};
         try {
-            return ((TakesScreenshot) WebDriverSingleton.INSTANCE.getDriver()).
-                    getScreenshotAs(OutputType.BYTES);
+            return ((TakesScreenshot) WebDriverSingleton
+                    .INSTANCE.getDriver()).getScreenshotAs(OutputType.BYTES);
         } catch (WebDriverException e) {
             e.printStackTrace();
         }
@@ -22,11 +23,7 @@ public class AttachmentListener extends TestListenerAdapter {
 
     @Override
     public void onTestFailure(ITestResult tr) {
-        makeScreenshot();
-    }
-
-    @Override
-    public void onTestSuccess(ITestResult tr) {
+        super.onTestFailure(tr);
         makeScreenshot();
     }
 }

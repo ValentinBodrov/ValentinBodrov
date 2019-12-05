@@ -43,59 +43,59 @@ public class FirstScenarioTest extends AbstractSeleniumTest {
         assertionSteps.
                 usernameOnThePageShouldBe("PITER CHAILOVSKII");
 
-        // 5. Assert Browser title
-        assertionSteps.pageTitleShouldBe("Home Page");
-
-        // 6. Assert that there are 4 items on the header
-        // section are displayed and they have proper texts
-        assertionSteps.
-                textsOnTheHeaderShouldBe(modelSteps.getExpectedHeaderItems());
-
-        // 7. Assert that there are 4 images on the Index Page and
-        // they are displayed
-        assertionSteps.
-                assertThatImagesOnThePageAreDisplayed();
-
-        // 8. Assert that there are 4 texts on the Index Page
-        // under icons and they have proper text
-        assertionSteps.benefitsTextsOnThePageShouldBe(
-                modelSteps.getExpectedBenefitsTexts());
-
-        // 9. Assert a text of the main headers
-        // There we have simple assertion of actual main headers texts
-        assertionSteps.mainHeaderOnThePageShouldBe(
-                modelSteps.getExpectedMainHeader());
-        assertionSteps.mainTextOnThePageShouldBe(
-                modelSteps.getExpectedMainText());
-
-        // 10. Assert that there is the iframe in the center of page
-        // We just check if there's an iframe in the centre of a page
-        assertionSteps.assertThatIframeOnThePageExists();
-
-        // 11. Switch to the iframe and check that there is Epam logo
-        // in the left top conner of iframe
-        actionSteps.switchToIframe();
-        assertionSteps.assertThatEpamLogoInTheIframeIsDisplayed();
-
-        // 12. Switch to original window back
-        // We switch back to the original page
-        actionSteps.switchBackToOriginalPage();
-
-        // 13. Assert a text of the sub header
-        assertionSteps.textInTheSubHeaderShouldBe("JDI GITHUB");
-
-        // 14. Assert that JDI GITHUB is a link and has
-        // a proper URL
-        assertionSteps.linkInTheSubHeaderElementShouldBe(
-                "https://github.com/epam/JDI");
-
-        // 15. Assert that there is Left Section
-        // We check here if the left sidebar section is displayed
-        assertionSteps.assertThatTheLeftSectionIsDisplayed();
-
-        // 16. Assert that there is Footer
-        // We check here if the footer is displayed
-        assertionSteps.assertThatTheFooterIsDisplayed();
+//        // 5. Assert Browser title
+//        assertionSteps.pageTitleShouldBe("Home Page");
+//
+//        // 6. Assert that there are 4 items on the header
+//        // section are displayed and they have proper texts
+//        assertionSteps.
+//                textsOnTheHeaderShouldBe(modelSteps.getExpectedHeaderItems());
+//
+//        // 7. Assert that there are 4 images on the Index Page and
+//        // they are displayed
+//        assertionSteps.
+//                assertThatImagesOnThePageAreDisplayed();
+//
+//        // 8. Assert that there are 4 texts on the Index Page
+//        // under icons and they have proper text
+//        assertionSteps.benefitsTextsOnThePageShouldBe(
+//                modelSteps.getExpectedBenefitsTexts());
+//
+//        // 9. Assert a text of the main headers
+//        // There we have simple assertion of actual main headers texts
+//        assertionSteps.mainHeaderOnThePageShouldBe(
+//                modelSteps.getExpectedMainHeader());
+//        assertionSteps.mainTextOnThePageShouldBe(
+//                modelSteps.getExpectedMainText());
+//
+//        // 10. Assert that there is the iframe in the center of page
+//        // We just check if there's an iframe in the centre of a page
+//        assertionSteps.assertThatIframeOnThePageExists();
+//
+//        // 11. Switch to the iframe and check that there is Epam logo
+//        // in the left top conner of iframe
+//        actionSteps.switchToIframe();
+//        assertionSteps.assertThatEpamLogoInTheIframeIsDisplayed();
+//
+//        // 12. Switch to original window back
+//        // We switch back to the original page
+//        actionSteps.switchBackToOriginalPage();
+//
+//        // 13. Assert a text of the sub header
+//        assertionSteps.textInTheSubHeaderShouldBe("JDI GITHUB");
+//
+//        // 14. Assert that JDI GITHUB is a link and has
+//        // a proper URL
+//        assertionSteps.linkInTheSubHeaderElementShouldBe(
+//                "https://github.com/epam/JDI");
+//
+//        // 15. Assert that there is Left Section
+//        // We check here if the left sidebar section is displayed
+//        assertionSteps.assertThatTheLeftSectionIsDisplayed();
+//
+//        // 16. Assert that there is Footer
+//        // We check here if the footer is displayed
+//        assertionSteps.assertThatTheFooterIsDisplayed();
     }
 
     @Test(testName = "Failed Login Test")
