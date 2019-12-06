@@ -1,6 +1,10 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Test The First Scenario">
 
+    <!-- listeners>
+        <listener class-name="hw5.utils.AttachmentListener"/>
+    </listeners -->
+
     <test name="First Scenario Test">
         <classes>
             <class name="hw5.FirstScenarioTest"/>

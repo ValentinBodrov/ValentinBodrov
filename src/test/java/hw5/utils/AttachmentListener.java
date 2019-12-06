@@ -4,16 +4,17 @@ import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
+import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
-public class AttachmentListener extends TestListenerAdapter {
+public class AttachmentListener implements ITestListener {
 
-    @Attachment(value = "Attachment.png", type = "image/png")
-    public byte[] makeScreenshot() {
-        byte[] array = {1};
+    @Attachment(value = "{0}", fileExtension = "png", type = "image/png")
+    public byte[] makeScreenshot(String name) {
+        byte[] array = null;
         try {
-            return ((TakesScreenshot) WebDriverSingleton
+            array = ((TakesScreenshot) WebDriverSingleton
                     .INSTANCE.getDriver()).getScreenshotAs(OutputType.BYTES);
         } catch (WebDriverException e) {
             e.printStackTrace();
@@ -23,8 +24,13 @@ public class AttachmentListener extends TestListenerAdapter {
 
     @Override
     public void onTestFailure(ITestResult tr) {
-        super.onTestFailure(tr);
-        makeScreenshot();
+        makeScreenshot(tr.getName());
     }
+
+    @Override
+    public void onTestSuccess(ITestResult tr) {
+        makeScreenshot(tr.getName());
+    }
+
 }
 

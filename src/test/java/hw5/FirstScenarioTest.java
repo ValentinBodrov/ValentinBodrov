@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-@Listeners({AllureTestNg.class, AttachmentListener.class})
+@Listeners({AttachmentListener.class})
 public class FirstScenarioTest extends AbstractSeleniumTest {
 
     private ModelSteps modelSteps;
