@@ -1,8 +1,7 @@
-package hw5.steps;
+package hw5.ex1.steps;
 
 import hw5.utils.HeaderItems;
 import org.openqa.selenium.WebDriver;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

@@ -38,8 +38,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <suite.file>src/test/resources/hw5/firstScenarioTestSuite.xml
-                </suite.file>
+                <suite.file>src/test/resources/hw5/testng.xml</suite.file>
             </properties>
         </profile>
 
