@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test The Allure Features">
+
+    <!-- listeners>
+        <listener class-name="hw5.utils.AttachmentListener"/>
+    </listeners -->
+
+    <test name="First Exercise Test">
+        <classes>
+            <class name="hw5.ex1.FirstScenarioTest"/>
+        </classes>
+    </test>
+
+    <test name="Second Exercise Test">
+        <classes>
+            <class name="hw5.ex2.SecondScenarioTest"/>
+            <class name="hw5.ex2.FailedScenarioTest"/>
+        </classes>
+    </test>
+
+</suite>

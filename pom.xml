@@ -18,20 +18,34 @@
         <selenium.version>3.141.59</selenium.version>
         <commons.io.version>2.6</commons.io.version>
         <webdrivermanager.version>3.7.1</webdrivermanager.version>
+        <selenide.version>5.5.1</selenide.version>
+        <allure.version>2.13.0</allure.version>
+        <aspectj.version>1.8.10</aspectj.version>
 
         <!-- Plugins version -->
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
 
-        <selenide.version>5.5.1</selenide.version>
+        <jackson.version>2.9.9</jackson.version>
+        <allure.maven.plugin.version>2.10.0</allure.maven.plugin.version>
     </properties>
 
     <profiles>
 
         <profile>
-            <id>AllSelenideScenarios</id>
+            <id>AllureScenario</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/hw5/testng.xml</suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>AllSelenideScenarios</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.file>src/test/resources/hw4/commonSelenideScenario.xml
@@ -75,7 +89,7 @@
         <profile>
             <id>FirstStepScenario</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.file>src/test/resources/hw3/firstScenarioTestSuite.xml
@@ -163,28 +177,33 @@
     </profiles>
 
     <dependencies>
+
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
         </dependency>
+
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons.io.version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.calculator</groupId>
             <artifactId>calculator</artifactId>
@@ -192,11 +211,19 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/src/main/resources/calculator-1.0.jar</systemPath>
         </dependency>
+
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
             <version>${selenide.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -217,13 +244,33 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.plugin.version}</version>
                 <configuration>
-                    <reuseForks>false</reuseForks>
-                    <forkCount>0</forkCount>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                     <suiteXmlFiles>
                         <suiteXmlFile>${suite.file}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
+
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure.maven.plugin.version}</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                    <resultsDirectory>${project.basedir}/allure-results
+                    </resultsDirectory>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
