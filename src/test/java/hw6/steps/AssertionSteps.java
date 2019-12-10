@@ -1,9 +1,15 @@
-package hw6.ex1.steps;
+package hw6.steps;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.en.Then;
+import hw6.DifferentElementsPage;
+import hw6.UserTablePage;
+import hw6.utils.WebDriverSingleton;
 import org.openqa.selenium.WebElement;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static org.testng.Assert.*;
 
@@ -62,6 +68,10 @@ public class AssertionSteps extends AbstractSteps {
 
     @Then("^'([^\"]+)' page is opened$")
     public void pageIsOpened(String expectedPageTitle) {
+        differentElementsPage = new DifferentElementsPage(WebDriverSingleton.
+                INSTANCE.getDriver());
+        userTablePage = new UserTablePage(WebDriverSingleton.
+                INSTANCE.getDriver());
         assertEquals(differentElementsPage.getPageTitle(), expectedPageTitle);
     }
 
@@ -115,7 +125,8 @@ public class AssertionSteps extends AbstractSteps {
     public void theLogRowsShouldContainInformationAboutCheckboxWithLabelOnDifferentElementsPage(
             String expectedItemName) {
         assertTrue(differentElementsPage.
-                isThereAnInfoAboutThisLabelInLogRow(expectedItemName, "true"));
+                isThereAnInfoAboutThisLabelInLogRow(
+                        expectedItemName, "true"));
     }
 
     @Then("^the checkbox with label '([^\"]+)' should not be checked on Different Elements Page$")
@@ -129,7 +140,8 @@ public class AssertionSteps extends AbstractSteps {
     public void theLogRowsShouldNotContainInformationAboutCheckboxWithLabelOnDifferentElementsPage(
             String expectedItemName) {
         assertTrue(differentElementsPage.
-                isThereAnInfoAboutThisLabelInLogRow(expectedItemName, "false"));
+                isThereAnInfoAboutThisLabelInLogRow(
+                        expectedItemName, "false"));
     }
 
     @Then("^the radiobutton with label '([^\"]+)' should be checked on Different Elements Page$")
@@ -158,6 +170,68 @@ public class AssertionSteps extends AbstractSteps {
             String expectedItemName) {
         assertTrue(differentElementsPage.
                 isThereAnInfoAboutThisLabelInLogRow(expectedItemName, "true"));
+    }
+
+    @Then("^(\\d+) Type Dropdowns are displayed on Users Table on" +
+            " User Table Page$")
+    public void numberTypeDropdownsAreDisplayedOnUsersTableOnUserTablePage(
+            int expectedNumber) {
+        assertEquals(userTablePage.getDropdownList().size(),
+                expectedNumber);
+    }
+
+    @Then("^(\\d+) User names are displayed on Users Table on " +
+            "User Table Page$")
+    public void userNamesAreDisplayedOnUsersTableOnUserTablePage(
+            int expectedNumber) {
+        assertEquals(userTablePage.getUsersList().size(),
+                expectedNumber);
+    }
+
+    @Then("^(\\d+) Description images are displayed on Users Table on" +
+            " User Table Page$")
+    public void descriptionImagesAreDisplayedOnUsersTableOnUserTablePage(
+            int expectedNumber) {
+        assertEquals(userTablePage.getDescriptionImagesList().size(),
+                expectedNumber);
+    }
+
+    @Then("^(\\d+) Description texts under images are displayed on Users" +
+            " Table on User Table Page$")
+    public void descriptionTextsUnderImagesAreDisplayedOnUsersTableOnUserTablePage(
+            int expectedNumber) {
+        assertEquals(userTablePage.getDescriptionTextsList().size(),
+                expectedNumber);
+    }
+
+    @Then("^(\\d+) checkboxes are displayed on Users Table on User Table Page$")
+    public void checkboxesAreDisplayedOnUsersTableOnUserTablePage(
+            int expectedNumber) {
+        assertEquals(userTablePage.getCheckboxesList().size(),
+                expectedNumber);
+    }
+
+    @Then("^User table contains following values:$")
+    public void userTableContainsFollowingValues(
+            DataTable expectedUserData) {
+        List<Map<String, String>> expectedUserMapList =
+                expectedUserData.asMaps(String.class, String.class);
+        assertEquals(expectedUserMapList, userTablePage.getActualUserData());
+    }
+
+    @Then("^1 log row has '([^\"]+)' text in log section$")
+    public void logRowHasTextInLogSection(String expectedText) {
+        assertTrue(userTablePage.isThereAnInfoAboutThisLabelInLogRow(
+                expectedText, "true"));
+    }
+
+    @Then("^droplist contains values$")
+    public void droplistContainsValues(DataTable expectedDropdownValues) {
+        List<String> expectedDropdownValuesList = new LinkedList<>(
+                expectedDropdownValues.asList(String.class));
+        expectedDropdownValuesList.remove(0);
+        assertEquals(userTablePage.getActualDropdownValues(),
+                expectedDropdownValuesList);
     }
 
 }

@@ -1,7 +1,7 @@
-package hw6.ex1;
+package hw6;
 
-import hw6.ex1.components.HeaderMenu;
-import hw6.ex1.components.LeftSideMenu;
+import hw6.components.HeaderMenu;
+import hw6.components.LeftSideMenu;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

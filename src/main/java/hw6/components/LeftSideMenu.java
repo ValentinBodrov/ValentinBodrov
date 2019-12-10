@@ -1,4 +1,4 @@
-package hw6.ex1.components;
+package hw6.components;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

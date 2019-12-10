@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test All Cucumber Scenarios">
+
+    <test name="First Exercise Test">
+        <classes>
+            <class name="hw6.ex1.RunTests"/>
+        </classes>
+    </test>
+
+    <test name="Second Exercise Test">
+        <classes>
+            <class name="hw6.ex2.RunTests"/>
+        </classes>
+    </test>
+
+</suite>

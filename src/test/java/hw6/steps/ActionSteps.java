@@ -1,4 +1,4 @@
-package hw6.ex1.steps;
+package hw6.steps;
 
 import cucumber.api.java.en.When;
 
@@ -49,6 +49,28 @@ public class ActionSteps extends AbstractSteps {
     public void iSelectInADrowdownAnElementOnDifferentElementsPage(
             String itemName) {
         differentElementsPage.selectColorInDropDown(itemName);
+    }
+
+    @When("^I click on '([^\"]+)' button in Header$")
+    public void iClickOnButtonInHeader(
+            String expectedItemName) {
+        homePage.clickHeaderMenuItem(expectedItemName.toUpperCase());
+    }
+
+    @When("^I click on '([^\"]+)' button in Service dropdown$")
+    public void iClickOnButtonInServiceDropdown(
+            String expectedItemName) {
+        homePage.clickItemInService(expectedItemName.toUpperCase());
+    }
+
+    @When("^I select 'vip' checkbox for '([^\"]+)'$")
+    public void iSelectVipCheckboxfor(String expectedName) {
+        userTablePage.clickVipCheckboxForName(expectedName);
+    }
+
+    @When("^I click on dropdown in column Type for user '([^\"]+)'")
+    public void iClickOnDropdownInColumnTypeForUser(String expectedName) {
+        userTablePage.clickDropdownForName(expectedName);
     }
 
 }

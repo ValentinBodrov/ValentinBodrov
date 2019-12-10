@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test The Second Cucumber Scenario">
+
+    <test name="Second Exercise Test">
+        <classes>
+            <class name="hw6.ex2.RunTests"/>
+        </classes>
+    </test>
+
+</suite>
