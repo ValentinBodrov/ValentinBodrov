@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test All Cucumber Scenarios">
+
+    <test name="First Exercise Test">
+        <classes>
+            <class name="hw6.RunTests"/>
+        </classes>
+    </test>
+
+</suite>
