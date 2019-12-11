@@ -3,13 +3,7 @@
 
     <test name="First Exercise Test">
         <classes>
-            <class name="hw6.ex1.RunTests"/>
-        </classes>
-    </test>
-
-    <test name="Second Exercise Test">
-        <classes>
-            <class name="hw6.ex2.RunTests"/>
+            <class name="hw6.RunTests"/>
         </classes>
     </test>
 

@@ -36,32 +36,10 @@
         <profile>
             <id>AllCucumberScenarios</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <suite.file>src/test/resources/hw6/commonCucumberTest.xml
-                </suite.file>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>FirstCucumberScenario</id>
-            <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <suite.file>src/test/resources/hw6/firstCucumberTest.xml
-                </suite.file>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>SecondCucumberScenario</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <suite.file>src/test/resources/hw6/secondCucumberTest.xml
+                <suite.file>src/test/resources/hw6/commonCucumberTest.xml
                 </suite.file>
             </properties>
         </profile>

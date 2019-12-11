@@ -1,4 +1,4 @@
-package hw6.ex2;
+package hw6;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
