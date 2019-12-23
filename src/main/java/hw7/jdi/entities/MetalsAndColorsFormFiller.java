@@ -2,7 +2,7 @@ package hw7.jdi.entities;
 
 import java.util.Arrays;
 
-public class TestData {
+public class MetalsAndColorsFormFiller {
 
     private int[] summary;
     private String[] elements;

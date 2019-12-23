@@ -5,7 +5,7 @@ import com.epam.jdi.light.elements.complex.WebList;
 import com.epam.jdi.light.elements.composite.WebPage;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.Css;
 import com.epam.jdi.light.ui.html.elements.common.Button;
-import hw7.jdi.entities.TestData;
+import hw7.jdi.entities.MetalsAndColorsFormFiller;
 import hw7.jdi.forms.MetalColorsForm;
 
 public class MetalsColorsPage extends WebPage {
@@ -30,8 +30,8 @@ public class MetalsColorsPage extends WebPage {
         return actualResultSet;
     }
 
-    public void fillForm(TestData testData) {
-        metalColorsForm.fillForm(testData);
+    public void fillForm(MetalsAndColorsFormFiller metalsAndColorsFormFiller) {
+        metalColorsForm.fillForm(metalsAndColorsFormFiller);
     }
 
     public void logout() {

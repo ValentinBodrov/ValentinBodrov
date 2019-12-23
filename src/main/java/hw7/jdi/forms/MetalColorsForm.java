@@ -5,9 +5,9 @@ import com.epam.jdi.light.elements.complex.dropdown.DropdownExpand;
 import com.epam.jdi.light.elements.composite.Form;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.Css;
 import com.epam.jdi.light.ui.html.elements.common.Button;
-import hw7.jdi.entities.TestData;
+import hw7.jdi.entities.MetalsAndColorsFormFiller;
 
-public class MetalColorsForm extends Form<TestData> {
+public class MetalColorsForm extends Form<MetalsAndColorsFormFiller> {
 
     @Css("#summary-block label")
     private WebList summaryRadioButtons;
@@ -36,18 +36,18 @@ public class MetalColorsForm extends Form<TestData> {
     @Css("#submit-button")
     private Button submit;
 
-    public void fillForm(TestData testData) {
-        for (int currentSummary : testData.getSummary()) {
+    public void fillForm(MetalsAndColorsFormFiller metalsAndColorsFormFiller) {
+        for (int currentSummary : metalsAndColorsFormFiller.getSummary()) {
             summaryRadioButtons.select(Integer.toString(currentSummary));
         }
-        elementsCheckBoxes.select(testData.getElements());
+        elementsCheckBoxes.select(metalsAndColorsFormFiller.getElements());
         colorExpander.click();
-        colors.select(testData.getColor());
+        colors.select(metalsAndColorsFormFiller.getColor());
         metalsExpander.click();
-        metalsItems.select(testData.getMetals());
+        metalsItems.select(metalsAndColorsFormFiller.getMetals());
         vegetablesExpander.click();
         vegetablesCheckBoxes.select("Vegetables");
-        vegetablesCheckBoxes.select(testData.getVegetables());
+        vegetablesCheckBoxes.select(metalsAndColorsFormFiller.getVegetables());
         submit.click();
     }
 }

@@ -4,7 +4,7 @@ import com.epam.jdi.light.driver.WebDriverUtils;
 import com.epam.jdi.light.elements.init.PageFactory;
 import hw7.dataproviders.TestDataProvider;
 import hw7.jdi.entities.JdiUser;
-import hw7.jdi.entities.TestData;
+import hw7.jdi.entities.MetalsAndColorsFormFiller;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -41,24 +41,22 @@ public class JdiSiteTests {
 
     @Test(dataProviderClass = TestDataProvider.class,
             dataProvider = "Data Sets Provider")
-    public void metalsAndColorsPageFormTest(TestData testData) {
-        JdiUser jdiUser = new JdiUser(userProperties.getProperty("username"),
-                userProperties.getProperty("password"),
-                userProperties.getProperty("fullname"));
+    public void metalsAndColorsPageFormTest(
+            MetalsAndColorsFormFiller metalsAndColorsFormFiller) {
         JdiSite.open();
-        JdiSite.login(jdiUser);
+        JdiSite.login(JdiUser.ROMAN);
         String actualUserName = JdiSite.jdiHomePage.getUserName();
-        assertEquals(actualUserName, jdiUser.getFullName(),
+        assertEquals(actualUserName, JdiUser.ROMAN.getFullName(),
                 format("Expected loginned user: %s, but get %s",
-                        actualUserName, jdiUser.getFullName()));
+                        actualUserName, JdiUser.ROMAN.getFullName()));
         JdiSite.openPageInHeaderMenu(METALS_COLORS);
         assertTrue(JdiSite.metalsColorsPage.isOpened(),
                 format("%s page didn't open", METALS_COLORS));
-        JdiSite.metalsColorsPage.fillForm(testData);
+        JdiSite.metalsColorsPage.fillForm(metalsAndColorsFormFiller);
         String actualResultSet = JdiSite.metalsColorsPage.getActualResultSet();
-        assertEquals(testData.toString(), actualResultSet,
+        assertEquals(metalsAndColorsFormFiller.toString(), actualResultSet,
                 format("Expected actual result set is %s, but got %s",
-                        testData, actualResultSet));
+                        metalsAndColorsFormFiller, actualResultSet));
         JdiSite.metalsColorsPage.logout();
     }
 
