@@ -21,22 +21,35 @@
         <selenide.version>5.5.1</selenide.version>
         <allure.version>2.13.0</allure.version>
         <aspectj.version>1.8.10</aspectj.version>
+        <jackson.version>2.9.9</jackson.version>
+        <allure.maven.plugin.version>2.10.0</allure.maven.plugin.version>
+        <cucumber.version>1.2.5</cucumber.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
+        <jackson-annotations.version>2.9.6</jackson-annotations.version>
 
         <!-- Plugins version -->
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
 
-        <jackson.version>2.9.9</jackson.version>
-        <allure.maven.plugin.version>2.10.0</allure.maven.plugin.version>
-        <cucumber.version>1.2.5</cucumber.version>
     </properties>
 
     <profiles>
 
         <profile>
-            <id>AllCucumberScenarios</id>
+            <id>JdiScenario</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/hw7/jdiScenario.xml
+                </suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>AllCucumberScenarios</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.file>src/test/resources/hw6/commonCucumberTest.xml
@@ -189,6 +202,24 @@
     </profiles>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson-annotations.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.jdi</groupId>
+            <artifactId>jdi-light-html</artifactId>
+            <version>RELEASE</version>
+        </dependency>
 
         <dependency>
             <groupId>org.testng</groupId>

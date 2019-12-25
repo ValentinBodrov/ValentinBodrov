@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test JDI Scenario">
+
+    <test name="JDI Scenario Test">
+        <classes>
+            <class name="hw7.jdi.JdiSiteTests">
+                <methods>
+                    <include name="metalsAndColorsPageFormTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
