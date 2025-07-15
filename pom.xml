@@ -24,7 +24,7 @@
         <jackson.version>2.9.9</jackson.version>
         <allure.maven.plugin.version>2.10.0</allure.maven.plugin.version>
         <cucumber.version>1.2.5</cucumber.version>
-        <commons-lang3.version>3.9</commons-lang3.version>
+        <commons-lang3.version>3.18.0</commons-lang3.version>
         <jackson-annotations.version>2.9.6</jackson-annotations.version>
 
         <!-- Plugins version -->
